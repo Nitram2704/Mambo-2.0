@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'theme/app_theme.dart';
+import 'core/theme/app_theme.dart';
+import 'shared/phone_frame.dart';
 
 class VitalisApp extends StatelessWidget {
   const VitalisApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = GoogleFonts.cormorantTextTheme(
-      ThemeData.dark().textTheme,
-      fontWeight: FontWeight.w400,
-    );
+    final textTheme = GoogleFonts.cormorantTextTheme(ThemeData.dark().textTheme);
 
     return MaterialApp(
       title: 'Vitalis',

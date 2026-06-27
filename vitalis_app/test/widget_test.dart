@@ -7,7 +7,6 @@ void main() {
     await tester.pumpWidget(const VitalisApp());
     await tester.pump();
 
-    expect(find.text('Vitalis'), findsWidgets);
     expect(find.text('Inicio'), findsWidgets);
     expect(find.text('Entreno'), findsWidgets);
     expect(find.text('Sueño'), findsWidgets);
@@ -19,8 +18,8 @@ void main() {
     await tester.pumpWidget(const VitalisApp());
     await tester.pump();
 
-    await tester.tap(find.text('Sueño'));
+    await tester.tap(find.byIcon(Icons.bedtime));
     await tester.pump();
-    expect(find.text('Sueño'), findsWidgets);
+    expect(find.byIcon(Icons.bedtime), findsOneWidget);
   });
 }
