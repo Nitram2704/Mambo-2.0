@@ -16,24 +16,27 @@ class CurvedGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: GaugePainter(progress: progress.clamp(0, 1)),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(value,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.text,
-                )),
-            Text(label,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: AppColors.textSecondary,
-                )),
-          ],
+    return SizedBox(
+      height: 120,
+      child: CustomPaint(
+        painter: GaugePainter(progress: progress.clamp(0, 1)),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(value,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.text,
+                  )),
+              Text(label,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.textSecondary,
+                  )),
+            ],
+          ),
         ),
       ),
     );
@@ -46,7 +49,9 @@ class GaugePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Rect.fromLTWH(2, 0, size.width - 4, size.height * 2);
+    final centerX = size.width / 2;
+    final radius = size.width / 2 - 8;
+    final rect = Rect.fromCircle(center: Offset(centerX, size.height), radius: radius);
 
     final bgPaint = Paint()
       ..color = AppColors.border.withValues(alpha: 0.15)
