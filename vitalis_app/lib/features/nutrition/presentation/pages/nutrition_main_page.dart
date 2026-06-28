@@ -55,8 +55,6 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
               _promoBanner(),
               const SizedBox(height: 16),
               _macroCard(),
-              const SizedBox(height: 16),
-              _terminarDiaButton(),
               const SizedBox(height: 24),
               _mealSection(),
             ],
@@ -216,11 +214,12 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
               ],
             ),
           ),
-          AppButton(
-            text: 'Obtener',
-            type: AppButtonType.primary,
-            width: 100,
-            onPressed: () {},
+          Flexible(
+            child: AppButton(
+              text: 'Obtener',
+              type: AppButtonType.primary,
+              onPressed: () {},
+            ),
           ),
         ],
       ),
@@ -247,51 +246,78 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          const SizedBox(
+          const SizedBox(height: 8),
+          SizedBox(
             height: 100,
-            child: CurvedGauge(
-              progress: 0,
-              value: '0',
-              label: 'kcal',
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const Center(
+                  child: CurvedGauge(
+                    progress: 0,
+                    value: '0',
+                    label: 'kcal',
+                  ),
+                ),
+                const Positioned(
+                  top: 10,
+                  left: 30,
+                  child: Text('2,285',
+                      style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textSecondary)),
+                ),
+                const Positioned(
+                  top: 10,
+                  right: 30,
+                  child: Text('2,793',
+                      style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textSecondary)),
+                ),
+              ],
             ),
           ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              _macroColumn('Proteínas', 0, 146),
+              _macroColumn('Carbs', 0, 298),
+              _macroColumn('Grasas', 0, 85),
+            ],
+          ),
           const SizedBox(height: 16),
-          _macroRow('Proteínas', 0, 146),
-          const SizedBox(height: 10),
-          _macroRow('Carbohidratos', 0, 298),
-          const SizedBox(height: 10),
-          _macroRow('Grasas', 0, 85),
+          AppButton(
+            text: 'Terminar Día',
+            type: AppButtonType.secondary,
+            onPressed: () {},
+          ),
         ],
       ),
     );
   }
 
-  Widget _macroRow(String label, int current, int total) {
-    final p = total > 0 ? current / total : 0.0;
-    return Row(
-      children: [
-        SizedBox(
-          width: 100,
-          child: Text(label,
+  Widget _macroColumn(String label, int current, int total) {
+    return Expanded(
+      child: Column(
+        children: [
+          Text('$total',
               style: const TextStyle(
-                  fontSize: 12, color: AppColors.textSecondary)),
-        ),
-        const SizedBox(width: 8),
-        Expanded(child: ProgressBar(progress: p)),
-        const SizedBox(width: 8),
-        Text('$current/${total}g',
-            style: const TextStyle(
-                fontSize: 11, color: AppColors.textSecondary)),
-      ],
-    );
-  }
-
-  Widget _terminarDiaButton() {
-    return AppButton(
-      text: 'Terminar Día',
-      type: AppButtonType.secondary,
-      onPressed: () {},
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textSecondary)),
+          const SizedBox(height: 2),
+          Text(label,
+              style: const TextStyle(
+                  fontSize: 11, color: AppColors.textSecondary)),
+          const SizedBox(height: 2),
+          Text('$current / $total g',
+              style: const TextStyle(
+                  fontSize: 11, color: AppColors.textTertiary)),
+        ],
+      ),
     );
   }
 

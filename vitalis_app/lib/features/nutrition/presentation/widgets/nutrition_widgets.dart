@@ -16,8 +16,7 @@ class CurvedGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
+    return ClipRect(
       child: CustomPaint(
         painter: GaugePainter(progress: progress.clamp(0, 1)),
         child: Center(
@@ -49,24 +48,25 @@ class GaugePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final centerX = size.width / 2;
-    final radius = size.width / 2 - 8;
-    final rect = Rect.fromCircle(center: Offset(centerX, size.height), radius: radius);
+    const strokeWidth = 8.0;
+    final radius = size.height - strokeWidth;
+    final center = Offset(size.width / 2, size.height);
+    final rect = Rect.fromCircle(center: center, radius: radius);
 
     final bgPaint = Paint()
       ..color = AppColors.border.withValues(alpha: 0.15)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
     final fgPaint = Paint()
       ..color = AppColors.accent
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    canvas.drawArc(rect, math.pi, -math.pi, false, bgPaint);
-    canvas.drawArc(rect, math.pi, -math.pi * progress, false, fgPaint);
+    canvas.drawArc(rect, 0, -math.pi, false, bgPaint);
+    canvas.drawArc(rect, 0, -math.pi * progress, false, fgPaint);
   }
 
   @override
