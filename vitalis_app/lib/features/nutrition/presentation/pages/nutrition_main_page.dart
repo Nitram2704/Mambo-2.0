@@ -126,7 +126,7 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
                 border: Border.all(
                   color: selected
                       ? AppColors.accent
-                      : AppColors.border.withValues(alpha: 0.3),
+                      : AppColors.border.withOpacity(0.3),
                 ),
                 borderRadius: BorderRadius.circular(22),
               ),
@@ -173,13 +173,13 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.accent.withValues(alpha: 0.15),
-            AppColors.accent.withValues(alpha: 0.05),
+            AppColors.accent.withOpacity(0.15),
+            AppColors.accent.withOpacity(0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
+        border: Border.all(color: AppColors.accent.withOpacity(0.3)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -351,7 +351,7 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
                 shape: BoxShape.circle,
                 color: i == _mealPage
                     ? AppColors.accent
-                    : AppColors.border.withValues(alpha: 0.3),
+                    : AppColors.border.withOpacity(0.3),
               ),
             );
           }),

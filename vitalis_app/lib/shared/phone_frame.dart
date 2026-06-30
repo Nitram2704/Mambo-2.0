@@ -42,8 +42,8 @@ class PhoneFrameState extends State<PhoneFrame> {
               color: AppColors.bg,
               borderRadius: BorderRadius.circular(44),
               boxShadow: [
-                BoxShadow(color: AppColors.border.withValues(alpha: 0.3), blurRadius: 1),
-                BoxShadow(color: Colors.black.withValues(alpha: 0.7), blurRadius: 80, offset: const Offset(0, 24)),
+                BoxShadow(color: AppColors.border.withOpacity(0.3), blurRadius: 1),
+                BoxShadow(color: Colors.black.withOpacity(0.7), blurRadius: 80, offset: const Offset(0, 24)),
               ],
             ),
             child: ClipRRect(

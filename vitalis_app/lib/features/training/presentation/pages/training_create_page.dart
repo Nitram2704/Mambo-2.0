@@ -58,10 +58,10 @@ class _TrainingCreateState extends State<TrainingCreate> {
                 hintText: 'Nombre de la rutina',
                 border: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: _hasTitle ? AppColors.accent : AppColors.border.withValues(alpha: 0.3)),
+                      color: _hasTitle ? AppColors.accent : AppColors.border.withOpacity(0.3)),
                 ),
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.border.withValues(alpha: 0.3)),
+                  borderSide: BorderSide(color: AppColors.border.withOpacity(0.3)),
                 ),
                 focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: AppColors.accent, width: 2),
@@ -82,7 +82,7 @@ class _TrainingCreateState extends State<TrainingCreate> {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppColors.accent.withValues(alpha: 0.1),
+                      color: AppColors.accent.withOpacity(0.1),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.fitness_center_outlined,

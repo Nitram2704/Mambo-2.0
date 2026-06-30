@@ -174,7 +174,7 @@ class RecordBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: AppColors.accent.withValues(alpha: 0.2),
+        color: AppColors.accent.withOpacity(0.2),
         borderRadius: BorderRadius.circular(8),
       ),
       child: const Text('Récord',

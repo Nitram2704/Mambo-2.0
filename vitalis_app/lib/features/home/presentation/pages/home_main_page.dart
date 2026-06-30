@@ -93,7 +93,7 @@ class HomeMainPage extends StatelessWidget {
             }),
           ),
           const SizedBox(height: 16),
-          Container(height: 1, color: AppColors.border.withValues(alpha: 0.15)),
+          Container(height: 1, color: AppColors.border.withOpacity(0.15)),
           const SizedBox(height: 12),
           const Row(
             children: [

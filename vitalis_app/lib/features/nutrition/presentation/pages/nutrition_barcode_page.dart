@@ -34,7 +34,7 @@ class _NutritionBarcodePageState extends State<NutritionBarcodePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppColors.accent.withValues(alpha: 0.5),
+                  color: AppColors.accent.withOpacity(0.5),
                   width: 2,
                 ),
               ),

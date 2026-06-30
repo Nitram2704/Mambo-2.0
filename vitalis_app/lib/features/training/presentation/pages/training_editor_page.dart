@@ -121,7 +121,7 @@ class _TrainingEditorState extends State<TrainingEditor> {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                  color: AppColors.accent.withValues(alpha: 0.15),
+                  color: AppColors.accent.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: const Icon(Icons.fitness_center, size: 18, color: AppColors.accent),

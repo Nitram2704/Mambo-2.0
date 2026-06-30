@@ -152,7 +152,7 @@ class AppToggle extends StatelessWidget {
         width: 44,
         height: 24,
         decoration: BoxDecoration(
-          color: value ? AppColors.accent : AppColors.border.withValues(alpha: 0.25),
+          color: value ? AppColors.accent : AppColors.border.withOpacity(0.25),
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.all(2),
@@ -269,13 +269,13 @@ class Pill extends StatelessWidget {
     Color bg, fg;
     switch (type) {
       case PillType.success:
-        bg = AppColors.accent.withValues(alpha: 0.2); fg = AppColors.accent;
+        bg = AppColors.accent.withOpacity(0.2); fg = AppColors.accent;
       case PillType.warning:
-        bg = AppColors.border.withValues(alpha: 0.25); fg = AppColors.border;
+        bg = AppColors.border.withOpacity(0.25); fg = AppColors.border;
       case PillType.error:
-        bg = AppColors.accentRose.withValues(alpha: 0.25); fg = AppColors.accentRose;
+        bg = AppColors.accentRose.withOpacity(0.25); fg = AppColors.accentRose;
       case PillType.info:
-        bg = AppColors.textSecondary.withValues(alpha: 0.2); fg = AppColors.text;
+        bg = AppColors.textSecondary.withOpacity(0.2); fg = AppColors.text;
     }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -297,7 +297,7 @@ class ProgressBar extends StatelessWidget {
     return Container(
       height: 4,
       decoration: BoxDecoration(
-        color: AppColors.border.withValues(alpha: 0.2),
+        color: AppColors.border.withOpacity(0.2),
         borderRadius: BorderRadius.circular(2),
       ),
       child: FractionallySizedBox(
@@ -345,7 +345,7 @@ class _RingPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (size.width / 2) - 6;
     canvas.drawCircle(center, radius, Paint()
-      ..color = AppColors.border.withValues(alpha: 0.15)
+      ..color = AppColors.border.withOpacity(0.15)
       ..style = PaintingStyle.stroke..strokeWidth = 5);
     canvas.drawArc(Rect.fromCircle(center: center, radius: radius),
       -1.5708, 6.2832 * progress.clamp(0, 1), false, Paint()
@@ -434,7 +434,7 @@ class AvatarCircle extends StatelessWidget {
         color: c, shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: AppColors.border.withValues(alpha: 0.12),
+            color: AppColors.border.withOpacity(0.12),
             blurRadius: 10, offset: const Offset(0, 2),
           ),
         ],

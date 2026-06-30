@@ -20,7 +20,7 @@ class TrainingFinish extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: AppColors.accent.withValues(alpha: 0.15),
+                color: AppColors.accent.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.star_rounded, size: 48, color: AppColors.accent),
@@ -81,7 +81,7 @@ class TrainingFinish extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha: 0.15),
+              color: AppColors.accent.withOpacity(0.15),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(Icons.emoji_events_outlined, size: 20, color: AppColors.accent),

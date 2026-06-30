@@ -54,7 +54,7 @@ class GaugePainter extends CustomPainter {
     final rect = Rect.fromCircle(center: center, radius: radius);
 
     final bgPaint = Paint()
-      ..color = AppColors.border.withValues(alpha: 0.15)
+      ..color = AppColors.border.withOpacity(0.15)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
@@ -110,7 +110,7 @@ class MealCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.restaurant_outlined,
-                      color: AppColors.textTertiary.withValues(alpha: 0.3),
+                      color: AppColors.textTertiary.withOpacity(0.3),
                       size: 32),
                   const SizedBox(height: 8),
                   const Text('No hay alimentos registrados',
@@ -165,10 +165,10 @@ class _PulsingLineState extends State<PulsingLine>
           child: Container(
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha: 0.8),
+              color: AppColors.accent.withOpacity(0.8),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.accent.withValues(alpha: 0.4),
+                  color: AppColors.accent.withOpacity(0.4),
                   blurRadius: 8,
                 ),
               ],
@@ -184,7 +184,7 @@ class ScannerGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.accent.withValues(alpha: 0.1)
+      ..color = AppColors.accent.withOpacity(0.1)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
 

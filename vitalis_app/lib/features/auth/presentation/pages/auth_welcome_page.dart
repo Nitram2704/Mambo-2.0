@@ -23,7 +23,7 @@ class AuthWelcomePage extends StatelessWidget {
               const BrandCircle(size: 100, animated: true),
               const SizedBox(height: 24),
               Text(
-                '¡Bienvenido a Vitalis!',
+                '¡Bienvenido a Mambo!',
                 style: GoogleFonts.cormorant(
                   fontSize: 32,
                   fontWeight: FontWeight.w700,

@@ -26,7 +26,7 @@ class AuthInicioPage extends StatelessWidget {
               const BrandCircle(size: 100),
               const SizedBox(height: 24),
               Text(
-                'Vitalis',
+                'Mambo',
                 style: GoogleFonts.cormorant(
                   fontSize: 36,
                   fontWeight: FontWeight.w700,

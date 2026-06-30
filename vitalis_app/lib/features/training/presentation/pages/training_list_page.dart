@@ -75,7 +75,7 @@ class _TrainingListState extends State<TrainingList> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppColors.accent.withValues(alpha: 0.15),
+                    color: AppColors.accent.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(Icons.add, size: 20, color: AppColors.accent),
@@ -96,7 +96,7 @@ class _TrainingListState extends State<TrainingList> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppColors.border.withValues(alpha: 0.2),
+                    color: AppColors.border.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(Icons.explore_outlined, size: 20, color: AppColors.border),

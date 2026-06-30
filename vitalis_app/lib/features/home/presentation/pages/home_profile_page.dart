@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide Chip;
+import 'package:vitalis_app/app.dart';
 import 'package:vitalis_app/core/widgets/common_widgets.dart';
 import 'package:vitalis_app/core/theme/app_theme.dart';
 import 'package:vitalis_app/core/widgets/toast.dart';
@@ -57,7 +58,7 @@ class _ProfileStats extends StatelessWidget {
             _profileStatItem('Altura', '${user.altura} m'),
           ]),
           const SizedBox(height: 8),
-          Container(height: 1, color: AppColors.border.withValues(alpha: 0.15)),
+          Container(height: 1, color: AppColors.border.withOpacity(0.15)),
           const SizedBox(height: 8),
           Row(children: [
             _profileStatItem('Entrenos', '${user.entrenos}'),
@@ -138,10 +139,15 @@ Widget _logoutButton(BuildContext context) {
     child: TextButton(
       onPressed: () {
         ToastOverlayState.of(context)?.show('Cerrando sesión...');
+        Future.delayed(const Duration(milliseconds: 800), () {
+          if (context.mounted) {
+            context.findAncestorStateOfType<VitalisAppState>()?.logout();
+          }
+        });
       },
       style: TextButton.styleFrom(
         foregroundColor: AppColors.accentRose,
-        side: BorderSide(color: AppColors.accentRose.withValues(alpha: 0.4)),
+        side: BorderSide(color: AppColors.accentRose.withOpacity(0.4)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(vertical: 12),
       ),

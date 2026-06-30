@@ -15,8 +15,8 @@ class BrandCircle extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.accent.withValues(alpha: 0.15),
-        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
+        color: AppColors.accent.withOpacity(0.15),
+        border: Border.all(color: AppColors.accent.withOpacity(0.3)),
       ),
       child: Icon(
         Icons.check_rounded,

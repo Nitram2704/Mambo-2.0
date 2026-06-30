@@ -20,7 +20,7 @@ class TrainingSaved extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: AppColors.accent.withValues(alpha: 0.15),
+                color: AppColors.accent.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.check_circle_outline,

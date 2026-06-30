@@ -127,7 +127,7 @@ class _TrainingExercisesState extends State<TrainingExercises> {
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: AppColors.border.withValues(alpha: 0.3)),
+              border: Border.all(color: AppColors.border.withOpacity(0.3)),
             ),
             alignment: Alignment.center,
             child: const Icon(Icons.fitness_center, size: 18, color: AppColors.textSecondary),

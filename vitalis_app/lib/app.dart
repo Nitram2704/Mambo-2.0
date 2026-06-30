@@ -8,14 +8,18 @@ class VitalisApp extends StatefulWidget {
   const VitalisApp({super.key});
 
   @override
-  State<VitalisApp> createState() => _VitalisAppState();
+  State<VitalisApp> createState() => VitalisAppState();
 }
 
-class _VitalisAppState extends State<VitalisApp> {
+class VitalisAppState extends State<VitalisApp> {
   bool _authenticated = false;
 
   void _onAuthFinished() {
     setState(() { _authenticated = true; });
+  }
+
+  void logout() {
+    setState(() { _authenticated = false; });
   }
 
   @override
@@ -23,7 +27,7 @@ class _VitalisAppState extends State<VitalisApp> {
     final textTheme = GoogleFonts.cormorantTextTheme(ThemeData.dark().textTheme);
 
     return MaterialApp(
-      title: 'Vitalis',
+      title: 'Mambo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark.copyWith(
         textTheme: textTheme.copyWith(

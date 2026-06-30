@@ -42,7 +42,7 @@ class BigRingPainter extends CustomPainter {
       center,
       radius,
       Paint()
-        ..color = AppColors.border.withValues(alpha: 0.15)
+        ..color = AppColors.border.withOpacity(0.15)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 8,
     );
