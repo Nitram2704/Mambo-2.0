@@ -78,8 +78,6 @@ class TrainingScreensState extends State<TrainingScreens> {
         return TrainingStart(pop: pop, push: push);
       case 'ejercicio-activo':
         return TrainingActive(push: push);
-      case 'ejercicio-activo2':
-        return TrainingActive2(push: push);
       case 'data':
         return TrainingData(pop: pop);
       case 'opciones':
