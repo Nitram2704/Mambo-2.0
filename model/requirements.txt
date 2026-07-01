@@ -1,0 +1,10 @@
+unsloth
+transformers>=4.51.3
+datasets
+trl
+sentencepiece
+tqdm
+pandas
+torch
+accelerate
+bitsandbytes
