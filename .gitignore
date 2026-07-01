@@ -1,2 +1,9 @@
 .git_bin/
 .venv
+
+# Model weights (too large for git)
+model/mambo_coach_lora/lora_weights.pt
+model/mambo_coach_lora/tokenizer.json
+model/mambo_coach_merged/
+model/mambo_coach_gguf/
+unsloth_compiled_cache/
