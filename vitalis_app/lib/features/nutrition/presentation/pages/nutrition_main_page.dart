@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Chip;
 import 'package:vitalis_app/core/widgets/common_widgets.dart';
 import 'package:vitalis_app/core/theme/app_theme.dart';
+import 'package:vitalis_app/features/nutrition/domain/entities/meal_template.dart';
 import '../widgets/nutrition_widgets.dart';
 
 class NutritionMainPage extends StatefulWidget {
@@ -12,8 +13,6 @@ class NutritionMainPage extends StatefulWidget {
 
 class _NutritionMainPageState extends State<NutritionMainPage> {
   int _selectedDay = 4;
-  int _mealPage = 0;
-  final _pageController = PageController();
 
   final _days = <(String, String, bool)>[
     ('L', '22', false),
@@ -25,18 +24,55 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
     ('D', '28', false),
   ];
 
-  final _meals = ['Desayuno', 'Media Mañana', 'Almuerzo', 'Cena'];
-  final _mealIcons = <IconData>[
-    Icons.wb_sunny_outlined,
-    Icons.free_breakfast_outlined,
-    Icons.restaurant_outlined,
-    Icons.nights_stay_outlined,
-  ];
+  final List<MealTemplate> _mealTemplates = MealTemplate.defaults();
+  final List<MealTemplate> _activeMeals = MealTemplate.defaults();
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
+  List<MealTemplate> get _availableTemplates => _mealTemplates
+      .where((t) => !_activeMeals.any((a) => a.type == t.type))
+      .toList();
+
+  void _removeMeal(int index) {
+    final removed = _activeMeals[index];
+    setState(() {
+      _activeMeals.removeAt(index);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${removed.type.displayName} eliminado'),
+        action: SnackBarAction(
+          label: 'Deshacer',
+          textColor: AppColors.accent,
+          onPressed: () {
+            setState(() => _activeMeals.insert(index, removed));
+          },
+        ),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
+  }
+
+  void _addMeal(MealTemplate template) {
+    setState(() => _activeMeals.add(template));
+  }
+
+  void _showAddMealSheet() {
+    final available = _availableTemplates;
+    if (available.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Todos los tipos de comida ya están agregados'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+    MealTemplateSelector.show(
+      context,
+      templates: available,
+      onSelected: _addMeal,
+    );
   }
 
   @override
@@ -63,7 +99,7 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
             right: 16,
             bottom: 16,
             child: FloatingActionButton(
-              onPressed: () => widget.onNavigate('registrar'),
+              onPressed: _showAddMealSheet,
               backgroundColor: AppColors.accent,
               foregroundColor: AppColors.bg,
               elevation: 4,
@@ -322,39 +358,74 @@ class _NutritionMainPageState extends State<NutritionMainPage> {
   }
 
   Widget _mealSection() {
+    if (_activeMeals.isEmpty) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SectionTitle(text: 'Comidas'),
+          AppCard(
+            child: GestureDetector(
+              onTap: _showAddMealSheet,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Column(
+                    children: [
+                      Icon(Icons.add_circle_outline,
+                          color: AppColors.accent.withOpacity(0.5), size: 36),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Agregar comida',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SectionTitle(text: 'Comidas'),
-        SizedBox(
-          height: 200,
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (i) => setState(() { _mealPage = i; }),
-            children: _meals.asMap().entries.map((e) {
-              return MealCard(
-                name: e.value,
-                icon: _mealIcons[e.key],
-              );
-            }).toList(),
+        ..._activeMeals.map((meal) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: MealCard(
+              template: meal,
+              onDeleted: () => _removeMeal(_activeMeals.indexOf(meal)),
+            ),
+          );
+        }),
+        const SizedBox(height: 4),
+        Center(
+          child: GestureDetector(
+            onTap: _showAddMealSheet,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.add_circle_outline,
+                    color: AppColors.accent, size: 18),
+                const SizedBox(width: 4),
+                Text(
+                  'Agregar comida',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.accent,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_meals.length, (i) {
-            return Container(
-              width: 8,
-              height: 8,
-              margin: const EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: i == _mealPage
-                    ? AppColors.accent
-                    : AppColors.border.withOpacity(0.3),
-              ),
-            );
-          }),
         ),
       ],
     );

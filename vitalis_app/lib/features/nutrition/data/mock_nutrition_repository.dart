@@ -5,11 +5,11 @@ class MockNutritionRepository implements NutritionRepository {
   @override
   List<FoodItem> getFoods() {
     return const [
-      FoodItem(name: 'Pollo pechuga', kcal: 165, protein: 31, carbs: 0, fat: 3.6),
-      FoodItem(name: 'Arroz blanco', kcal: 130, protein: 2.7, carbs: 28, fat: 0.3),
-      FoodItem(name: 'Huevo', kcal: 155, protein: 13, carbs: 1.1, fat: 11),
-      FoodItem(name: 'Aguacate', kcal: 160, protein: 2, carbs: 9, fat: 15),
-      FoodItem(name: 'Batido proteína', kcal: 120, protein: 24, carbs: 3, fat: 1.5),
+      FoodItem(id: 'f1', name: 'Pollo pechuga', kcal: 165, protein: 31, carbs: 0, fat: 3.6),
+      FoodItem(id: 'f2', name: 'Arroz blanco', kcal: 130, protein: 2.7, carbs: 28, fat: 0.3),
+      FoodItem(id: 'f3', name: 'Huevo', kcal: 155, protein: 13, carbs: 1.1, fat: 11),
+      FoodItem(id: 'f4', name: 'Aguacate', kcal: 160, protein: 2, carbs: 9, fat: 15),
+      FoodItem(id: 'f5', name: 'Batido proteína', kcal: 120, protein: 24, carbs: 3, fat: 1.5),
     ];
   }
 
